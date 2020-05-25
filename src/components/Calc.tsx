@@ -1,18 +1,16 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { VueComponent } from "../shims-vue";
 import Display from "./Display/Display";
-import NumberBtn from './NumberBtn/NumberBtn'
+import NumberBtn from "./NumberBtn/NumberBtn";
 import { useStore } from "vuex-simple";
 import { MyStore } from "../store/store";
 
 import styles from "./Calc.css?module";
 
-interface Props {
-}
+interface Props {}
 
 @Component
 export default class Calc extends VueComponent<Props> {
-  
   private buttons: Array<number> = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0];
   public store: MyStore = useStore(this.$store);
 

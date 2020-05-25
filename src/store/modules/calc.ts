@@ -2,10 +2,10 @@ import { Mutation, State } from "vuex-simple";
 
 export class Calc {
   @State() public buffer: string;
-  @State() public result: number;
+  @State() public result: string;
   @State() public operatorToggle: boolean;
 
-  constructor(buf: string = "", res: number = 0, opTgl: boolean = false) {
+  constructor(buf: string = "", res: string = "0", opTgl: boolean = false) {
     this.buffer = buf;
     this.result = res;
     this.operatorToggle = opTgl;
@@ -32,14 +32,14 @@ export class Calc {
   @Mutation()
   public clear(): void {
     this.buffer = "";
-    this.result = 0;
+    this.result = "0";
   }
   @Mutation()
   public async equal() {
     if (!this.operatorToggle) {
       await new Promise((res) =>
         setTimeout(() => {
-          this.result = eval(this.buffer);
+          this.result = `= ${eval(this.buffer)}`;
           this.buffer = '';
         }, 2000)
       );

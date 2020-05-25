@@ -2,9 +2,6 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { VueComponent } from "../../shims-vue";
 import { useStore } from "vuex-simple";
 import { MyStore } from "../../store/store";
-
-import styles from "./NumberBtn.css?module";
-
 interface Props {
   value: number | string;
 }
