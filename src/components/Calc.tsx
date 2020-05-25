@@ -12,14 +12,16 @@ export default class Calc extends VueComponent<Props> {
 
   addSymbol(symbol: number | string): void {
     this.buffer = this.buffer + symbol.toString();
-    console.log(this.buffer);
   }
   clear(): void {
     this.buffer = "";
     this.result = 0;
   }
   equal(): void {
-    this.result = eval(this.buffer)
+    if (this.buffer.slice(-1) !== '+' && '-') {
+      console.log(typeof this.buffer.slice(-1));
+      this.result = eval(this.buffer);
+    }
   }
 
   @Prop()
