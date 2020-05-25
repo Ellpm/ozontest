@@ -1,14 +1,19 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { VueComponent } from "../shims-vue";
+import Display from "./Display/Display";
+import NumberBtn from './NumberBtn/NumberBtn'
 
 import styles from "./Calc.css?module";
 
-interface Props {}
+interface Props {
+}
 
 @Component
 export default class Calc extends VueComponent<Props> {
   private buffer: string = "";
   private result: number = 0;
+  private buttons: Array<number> = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0];
+  private operators: Array<string> = ['C', '-', '+','=']
 
   addSymbol(symbol: number | string): void {
     this.buffer = this.buffer + symbol.toString();
@@ -18,102 +23,21 @@ export default class Calc extends VueComponent<Props> {
     this.result = 0;
   }
   equal(): void {
-    if (this.buffer.slice(-1) !== '+' && '-') {
-      console.log(typeof this.buffer.slice(-1));
+    if (this.buffer.slice(-1) !== "+" && "-") {
       this.result = eval(this.buffer);
     }
   }
 
-  @Prop()
+  @Prop() 
   render() {
     return (
       <div class={styles.calc}>
-        <div class={styles.display}>
-          <div class={styles.buffer}>{this.buffer}</div>
-          <div class={styles.result}>{this.result}</div>
-        </div>
+        <Display />
         <div class={styles.btns}>
           <div class={styles.numbers}>
-            <div
-              onClick={() => {
-                this.addSymbol(7);
-              }}
-              class={styles.btn}
-            >
-              7
-            </div>
-            <div
-              onClick={() => {
-                this.addSymbol(8);
-              }}
-              class={styles.btn}
-            >
-              8
-            </div>
-            <div
-              onClick={() => {
-                this.addSymbol(9);
-              }}
-              class={styles.btn}
-            >
-              9
-            </div>
-            <div
-              onClick={() => {
-                this.addSymbol(4);
-              }}
-              class={styles.btn}
-            >
-              4
-            </div>
-            <div
-              onClick={() => {
-                this.addSymbol(5);
-              }}
-              class={styles.btn}
-            >
-              5
-            </div>
-            <div
-              onClick={() => {
-                this.addSymbol(6);
-              }}
-              class={styles.btn}
-            >
-              6
-            </div>
-            <div
-              onClick={() => {
-                this.addSymbol(1);
-              }}
-              class={styles.btn}
-            >
-              1
-            </div>
-            <div
-              onClick={() => {
-                this.addSymbol(2);
-              }}
-              class={styles.btn}
-            >
-              2
-            </div>
-            <div
-              onClick={() => {
-                this.addSymbol(3);
-              }}
-              class={styles.btn}
-            >
-              3
-            </div>
-            <div
-              onClick={() => {
-                this.addSymbol(0);
-              }}
-              class={styles.zero}
-            >
-              0
-            </div>
+            {this.buttons.map((value) => (
+              <NumberBtn value={value}/>
+            ))}            
           </div>
           <div class={styles.operators}>
             <div

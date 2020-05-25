@@ -1,0 +1,6 @@
+.display {
+  width: calc(100% - 2px);
+  text-align: right;
+  color: white;
+  grid-auto-rows: minmax(20px, auto);
+}
