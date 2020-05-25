@@ -3,8 +3,8 @@ import { Calc } from "./modules/calc";
 
 export class MyStore {
   @Module()
-  public bar = new Calc();
+  public calc = new Calc();
 
-  @State()
-  public version = "2.0.0";
+//   @State()
+//   public version = "2.0.0";
 }

@@ -1,25 +1,24 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { VueComponent } from "../../shims-vue";
+import {useStore} from 'vuex-simple'
+import {MyStore} from '../../store/store'
 
 import styles from "./NumberBtn.css?module";
 
 interface Props {
-  value: Number;
+  value: number|string;
 }
 
 @Component
 export default class NumberBtn extends VueComponent<Props> {
-  private buffer: string = "";
-  private result: number = 0;
+  
+  public store: MyStore = useStore(this.$store)
 
-  addSymbol(symbol: number | string): void {
-    this.buffer = this.buffer + symbol.toString();
-  }
+  
  
 
-  @Prop() private value!: Number;
+  @Prop() private value!: number;
   render() {
     return (
-    <div onClick={()=>{console.log(this.value);
-    }}>{this.value}</div>
+    <div onClick={()=>{this.store.calc.addSymbol(this.value)}}>{this.value}</div>
     )}}
