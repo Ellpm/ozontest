@@ -1,3 +1,7 @@
+
+Firebase deploy link: https://calc-d8f42.web.app/
+
+
 # ozontest
 
 ## Project setup
